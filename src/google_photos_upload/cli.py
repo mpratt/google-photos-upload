@@ -1,0 +1,8 @@
+from google_photos_upload.main import GphotosUpload
+
+def start():
+    uploader = GphotosUpload()
+    uploader.start()
+
+if __name__ == "__main__":
+    start()
