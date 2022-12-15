@@ -15,7 +15,7 @@ setup(
     license = "MIT",
     keywords = "Google Photos Upload client albums media",
     include_package_data=True,
-    #url = "http://packages.python.org/an_example_pypi_project",
+    url = "https://github.com/mpratt/google-photos-upload",
     packages = find_packages(),
     package_dir = { '' : 'src' },
     long_description = read('README.md'),
