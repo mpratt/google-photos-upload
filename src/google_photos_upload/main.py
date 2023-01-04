@@ -2,9 +2,9 @@ import os
 import json
 from alive_progress import alive_it
 from argparse import ArgumentParser
-from google_photos_upload.filefinder import FileFinder
-from google_photos_upload.database import Database
-from google_photos_upload.restclient import RestClient
+from .filefinder import FileFinder
+from .database import Database
+from .restclient import RestClient
 
 class GphotosUpload:
     def __init__(self) -> None:

@@ -1,4 +1,4 @@
-from google_photos_upload.main import GphotosUpload
+from .main import GphotosUpload
 
 def start():
     uploader = GphotosUpload()

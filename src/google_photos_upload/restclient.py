@@ -1,4 +1,4 @@
-from google_photos_upload.oauth import OAuth
+from .oauth import OAuth
 
 class RestClient:
     def __init__(self, credentials) -> None:
