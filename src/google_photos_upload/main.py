@@ -42,12 +42,19 @@ class GphotosUpload:
             print("\nERROR: {} is not a credentials file.".format(self.credentials))
             exit(1)
 
+        stats = {
+            'files_uploaded': 0,
+            'files_failed': 0,
+            'files_already_uploaded': 0,
+        }
+
         database = Database(self.path)
         items = FileFinder(self.path).find_media_files()
         rest = RestClient(self.credentials)
         for item in alive_it(items):
             file_data = database.get_file(item.get('path'))
             if file_data is not None:
+                stats['files_already_uploaded'] += 1
                 continue;
 
             album_data = database.get_album(item.get('album_path'))
@@ -68,8 +75,15 @@ class GphotosUpload:
                 ret = rest.add_to_album(item.get('name'), file_id, album_id)
                 if ret.status_code == 200:
                     database.add_file(item.get('name'), item.get('path'), item.get('album'), file_id, json.dumps(ret.content.decode('utf-8')))
+                    stats['files_uploaded'] += 1
                 else:
                     print('Error: Adding file to album failed. {} / {}'.format(item.get('path'), ret.content.decode('utf-8')))
+                    stats['files_failed'] += 1
             else:
                 print('Error: Uploading file failed. {} / {}'.format(item.get('path'), ret.content.decode('utf-8')))
+
+        print('Files uploaded: {}'.format(stats['files_uploaded']))
+        print('Files failed: {}'.format(stats['files_failed']))
+        print('Files already uploaded: {}'.format(stats['files_already_uploaded']))
+
 
