@@ -27,7 +27,9 @@ class FileFinder:
                             'extension': ext,
                             'album': os.path.basename(dirname),
                             'album_path': dirname,
+                            'date_modified': os.path.getmtime(file),
                         }
                     )
 
-        return files
+
+        return sorted(files, key=lambda k: k['date_modified'], reverse=True)
