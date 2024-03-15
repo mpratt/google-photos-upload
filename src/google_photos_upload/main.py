@@ -85,5 +85,3 @@ class GphotosUpload:
         print('Files uploaded: {}'.format(stats['files_uploaded']))
         print('Files failed: {}'.format(stats['files_failed']))
         print('Files already uploaded: {}'.format(stats['files_already_uploaded']))
-
-
