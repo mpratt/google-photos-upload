@@ -13,5 +13,11 @@ Download the source code, extract the data, go to the folder and run
 
 # Usage
 ```
-google-photos-upload folder_with_media --credentials /path/to/credentials.json
+google-photos-upload folder_with_media --credentials /path/to/credentials.json [options]
+
+Options:
+
+  -h, --help     output usage information
+      --timeout  timeout for uploading a single file in seconds
+      --version  prints version
 ```

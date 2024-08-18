@@ -33,7 +33,7 @@ class GphotosUpload:
         )
 
         parser.add_argument(
-            '--version', action='version', version='{} {}'.format('Google Photos Uploader', '0.2.0')
+            '--version', action='version', version='{} {}'.format('Google Photos Uploader', '0.2.1')
         )
 
         return parser
