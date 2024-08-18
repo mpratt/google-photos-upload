@@ -68,7 +68,7 @@ class OAuth:
     def make_request(self, method, path, data):
         return self.session.request(method, path, data = json.dumps(data))
 
-    def make_upload(self, method, path, data):
+    def make_upload(self, method, path, data, timeout):
         headers = {
             'Content-type': 'application/octet-stream',
             'X-Goog-Upload-Protocol': 'raw',
@@ -76,4 +76,7 @@ class OAuth:
         }
 
         file = open(data, 'rb')
-        return self.session.request(method, path, data=file.read(), headers=headers)
+        if timeout is None:
+            return self.session.request(method, path, data=file.read(), headers=headers)
+        else:
+            return self.session.request(method, path, data=file.read(), headers=headers, timeout=timeout)
