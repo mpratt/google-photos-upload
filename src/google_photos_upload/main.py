@@ -12,6 +12,7 @@ class GphotosUpload:
         args = self.parser.parse_args()
         self.path = os.path.abspath(args.path)
         self.credentials = os.path.abspath(args.credentials)
+        self.timeout = args.timeout
 
     def get_arguments(self) -> ArgumentParser:
         parser = ArgumentParser(description = __name__)
@@ -26,7 +27,13 @@ class GphotosUpload:
         )
 
         parser.add_argument(
-            '--version', action='version', version='{} {}'.format('Google Photos Uploader', '0.2.0')
+            '--timeout',
+            type = int,
+            help = 'Timeout for uploading a single item in seconds'
+        )
+
+        parser.add_argument(
+            '--version', action='version', version='{} {}'.format('Google Photos Uploader', '0.2.1')
         )
 
         return parser
@@ -69,7 +76,7 @@ class GphotosUpload:
                     continue
 
             album_id = album_data[0][2]
-            ret = rest.upload_file(item.get('path'))
+            ret = rest.upload_file(item.get('path'), self.timeout)
             if ret.status_code == 200:
                 file_id = str(ret.content.decode('utf-8'))
                 ret = rest.add_to_album(item.get('name'), file_id, album_id)
