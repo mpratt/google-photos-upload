@@ -1,7 +1,11 @@
 import os
 
 class FileFinder:
-    def __init__(self, path, allowed_extensions = [ 'jpg', 'jpeg', 'png', 'gif', 'avi', 'mov', 'mp4', '3gp', 'm4v', 'bmp', 'm2ts']) -> None:
+    def __init__(self, path, allowed_extensions = [
+        'jpg', 'jpeg', 'png', 'gif', 'avi', 'mov', 'mp4', '3gp', 'm4v', 'bmp', 'm2ts', 
+        'avif', 'heic', 'ico', 'tiff', 'webp', 'raw', '3g2', 'asf', 'divx', 'm2t', 'mkv', 
+        'mmv', 'mod', 'mpg', 'mts', 'tod', 'wmv'
+    ]) -> None:
         if not os.path.isdir(path):
             print("\nERROR: {} is not a directory.".format(path))
             exit(1)
