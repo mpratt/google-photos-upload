@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name = 'google_photos_upload',
-    version = '0.1.0',
+    version = '0.3.0',
     author = "Michael Pratt",
     author_email = "author@michaelpratt.dev",
     description = ( "Upload media files to Google Photos" ),
